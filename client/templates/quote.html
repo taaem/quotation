@@ -1,0 +1,12 @@
+<template name="quote">
+	<li>
+		<h2>{{artist}}</h2>
+		<p>{{quote}}</p>
+		{{#if ownedByUser}}
+		<button class="delete">Remove</button>
+		{{/if}}
+		{{#if isInRole 'admin'}}
+		<button class="delete">Remove</button>
+		{{/if}}
+	</li>
+</template>

@@ -1,0 +1,31 @@
+<template name="admin">
+	<div class="container admin-container">
+
+	{{#if isInRole 'admin'}}
+
+		<h2>Admin</h2>
+
+	<ul class="admin">
+		{{#each users}}
+		<li>
+			{{#each emails}}
+			<h4>{{address}}</h4>
+			{{#if verified}}
+			{{else}}
+				<button class="button verify">Verify</button>
+			{{/if}}
+			{{/each}}
+			{{#if roles}}
+			<p>Admin</p>
+			{{else}}
+			<button class="button delete">Remove</button>
+			{{/if}}
+
+		</li>
+		{{/each}}
+	</ul>
+	{{/if}}
+
+	</div>
+	
+</template>

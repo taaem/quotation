@@ -1,0 +1,53 @@
+<template name="home">
+
+<div class="container">
+	<header>	
+	<br>
+	{{#if currentUser}}
+		<div class="logout-button" id="handler">Logout</div>
+	{{#if isInRole 'admin'}}
+		<div class="admin-button" id="handler">Administration</div>
+		{{>admin}}
+	{{/if}}
+	{{else}}
+		{{> forms}}
+	{{/if}}
+	<div class="title">	
+		<h1>Quotes</h1>
+	</div>
+
+</header>
+<main>
+	{{#if currentUser}}
+	{{#if verifiedUser}}
+	<h4 id="add-new-quote">Add new Quote</h4>
+	<div id="new-quote">
+		<form class="new-quote">
+			<input type="text" name="artist" placeholder="Artist"><br>
+			<textarea name="quote" cols="30" rows="5" placeholder="Quote"></textarea><br>
+			<input id="quote-submit" type="submit" value="Submit">
+		</form>
+	</div>
+	{{else}}
+	<h5>Waiting for approvel from Admin</h5>
+	{{/if}}
+	<label class="onlyByUser">
+		<input type="checkbox" name="onlyByUser" id="onlyByUser" checked="{{onlyByUser}}">
+		Show only my Quotes
+	</label>
+	{{/if}}
+	<br>
+	<select name="Artists" id="artist-select">
+		<option value="all">Show All</option>
+		{{#each artists}}
+			{{>artist}}
+		{{/each}}
+	</select>
+<ul class="quotes">
+	{{#each quotes}}
+			{{> quote}}
+	{{/each}}
+</ul>
+</main>
+</div>
+</template>
